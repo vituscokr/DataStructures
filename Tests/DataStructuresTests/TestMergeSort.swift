@@ -6,7 +6,7 @@
 //
 
 import XCTest
-
+@testable import DataStructures
 class TestMergeSort: XCTestCase {
 
     var testArray = [7,2,6,3,3, 9, 15, 4, 11]

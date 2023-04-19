@@ -6,7 +6,7 @@
 //
 
 import XCTest
-
+@testable import DataStructures
 class TestPriorityQueue: XCTestCase {
     
     private let unsortedInts = [12, 3,4, 1, 7, 6,8,7]

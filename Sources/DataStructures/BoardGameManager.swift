@@ -10,10 +10,9 @@ import Foundation
 protocol BoardGameManager {
     associatedtype Player
     mutating func nextPlayer() -> Player?
-    
 }
 
-extension QueueStack : BoardGameManager {
+extension QueueStack: BoardGameManager {
     typealias Player = T
     @discardableResult
     mutating func nextPlayer() -> Player? {
@@ -24,4 +23,3 @@ extension QueueStack : BoardGameManager {
         return player
     }
 }
-

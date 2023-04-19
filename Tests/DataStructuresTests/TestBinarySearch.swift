@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import DataStructures
 
 class TestBinarySearch: XCTestCase {
 
@@ -45,3 +46,4 @@ class TestBinarySearch: XCTestCase {
     }
 
 }
+

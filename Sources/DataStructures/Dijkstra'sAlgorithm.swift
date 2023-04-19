@@ -6,14 +6,23 @@
 //
 
 import Foundation
-
+/// https://www.kodeco.com/773-swift-algorithm-club-graphs-with-adjacency-list
+/// Using Adjacency List & Min-Priority Queue
+/// logarithmic Time 0(log V)
+///     Removing Root
+/// Inserting an Element
+/// Linear Time 0(e)
+///     Getting dequeued Edge
+///         Traversing to Start
+///  Overrall Performance O(E log V)
+///
 //DataStructures.
-enum Dijkstra<Graph:Test.Graph>  where Graph.Element : Hashable {
-    typealias Edge = Graph.Edge
+enum Dijkstra<Graphable: Graph>  where Graphable.Element : Hashable {
+    typealias Edge = Graphable.Edge
     typealias Vertex = Edge.Vertex
     
     
-    static func getEdges(alongPathsFrom source : Vertex, graph: Graph )-> [Vertex: Edge] {
+    static func getEdges(alongPathsFrom source : Vertex, graph: Graphable )-> [Vertex: Edge] {
         var edges:[Vertex: Edge] = [:]
         func getWeight(to destination :Vertex) -> Double {
             return getShortestPath(to: destination, edgesAlongPath: edges)
@@ -50,15 +59,16 @@ enum Dijkstra<Graph:Test.Graph>  where Graph.Element : Hashable {
         return shortestPath
     }
     
-    static func getShortestPath(from source : Vertex, to destination : Vertex , graph : Graph ) -> [Edge] {
+    static func getShortestPath(from source : Vertex, to destination : Vertex , graph: Graphable) -> [Edge] {
         return getShortestPath(to: destination, edgesAlongPath: getEdges(alongPathsFrom: source, graph: graph))
     }
     
-    static func getShortestPaths(from source: Vertex , graph: Graph) -> [Vertex : [Edge]] {
-        let edges = getEdges(alongPathsFrom: source , graph: graph)
+    static func getShortestPaths(from source: Vertex , graph: Graphable) -> [Vertex : [Edge]] {
+        let edges = getEdges(alongPathsFrom: source , graph: graph )
         let paths = graph.vertices.map {
             getShortestPath(to: $0, edgesAlongPath: edges)
         }
         return Dictionary(uniqueKeysWithValues: zip(graph.vertices, paths))
     }
 }
+

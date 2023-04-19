@@ -6,7 +6,7 @@
 //
 
 import XCTest
-
+@testable import DataStructures
 class TestHeap: XCTestCase {
 
     override func setUpWithError() throws {
@@ -93,3 +93,4 @@ class TestHeap: XCTestCase {
         //private let unsortedInts = [1, 12, 3, 4, 1, 6, 8, 7]
     }
 }
+

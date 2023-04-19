@@ -6,7 +6,7 @@
 //
 
 import XCTest
-
+@testable import DataStructures
 class TestAdjacencyList: XCTestCase {
     
     func testDescription() {

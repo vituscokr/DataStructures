@@ -7,57 +7,48 @@
 
 import Foundation
 
-
-protocol Queue :Sequence, IteratorProtocol{
+public protocol Queue: Sequence, IteratorProtocol {
     associatedtype Element
-    
     mutating func enqueue(_ element: Element)
-    mutating func dequeue()->Element?
-    var isEmpty : Bool { get }
-    var peek : Element? { get }
+    mutating func dequeue() -> Element?
+    var isEmpty: Bool { get }
+    var peek: Element? { get }
 }
 
 extension Queue {
-    mutating func next() -> Element? {
+    public mutating func next() -> Element? {
         return dequeue()
     }
 }
 
-struct QueueArray<T>: Queue {
-    typealias Element = T
-    private var array :[T] = []
-    
-    mutating func enqueue(_ element: T) {
+public struct QueueArray<T>: Queue {
+    public typealias Element = T
+    private var array: [T] = []
+    public mutating func enqueue(_ element: T) {
         array.append(element)
     }
     @discardableResult
-    mutating func dequeue() -> T? {
+    public mutating func dequeue() -> T? {
         return isEmpty ? nil : array.removeFirst()
     }
-    
-    var isEmpty: Bool {
+    public var isEmpty: Bool {
         return array.isEmpty
     }
-    
-    var peek: T? {
+    public var peek: T? {
         return array.first
     }
 }
 
 struct QueueStack<T>: Queue {
     typealias Element = T
-
-    
-    private var dequeueStack : [T] = []
-    private var enqueueStack : [T] = []
-    
+    private var dequeueStack: [T] = []
+    private var enqueueStack: [T] = []
     var isEmpty: Bool {
         return dequeueStack.isEmpty && enqueueStack.isEmpty
     }
-    var peek : T? {
+    var peek: T? {
         return !dequeueStack.isEmpty ? dequeueStack.last : enqueueStack.first
     }
-    
     mutating func enqueue(_ element: T) {
         enqueueStack.append(element)
     }
@@ -69,5 +60,4 @@ struct QueueStack<T>: Queue {
         }
         return dequeueStack.popLast()
     }
-    
 }

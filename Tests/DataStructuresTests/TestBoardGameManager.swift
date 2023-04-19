@@ -6,6 +6,8 @@
 //
 
 import XCTest
+@testable import DataStructures
+
 
 class TestBoardGameManager: XCTestCase {
 

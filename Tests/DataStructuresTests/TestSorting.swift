@@ -6,25 +6,21 @@
 //
 
 import XCTest
+@testable import DataStructures
 
 class TestSorting: XCTestCase {
 
     var testArray : [Int] = []
     let sortedArray = [3, 4, 9, 10]
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        testArray = [9,4, 10, 3]
+    
+    override func setUp() {
+     
+        testArray = [9 ,4, 10, 3]
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
     func testBubbleSort() throws {
         bubbleSort(&testArray)
-        
         XCTAssertEqual(testArray, sortedArray)
-        
-        
     }
     
     func testSelectionSort() throws {

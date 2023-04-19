@@ -6,12 +6,51 @@
 //
 
 import XCTest
-import DataStructures
+@testable import DataStructures
 
 class TestStack: XCTestCase {
-
-
+    
+    var stack = Stack<Int>()
+    
+    override  func setUp() {
+        stack.push(1)
+        stack.push(2)
+        stack.push(3)
+        stack.push(4)
+    }
+    
     func testPush() {
+        
+        XCTAssertEqual(stack.description, "1 2 3 4")
+    }
+    
+    func testPop() {
+        XCTAssertEqual(stack.pop(), 4)
+    }
+    
+    func testPeek() {
+        XCTAssertEqual(stack.peek(), 4)
+    }
+    
+    func testIsEmpty() {
+        //XCTAssertTrue(stack.isEmpty)
+        XCTAssertFalse(stack.isEmpty)
+    }
+    
+    func testInitWithArray() {
+        let array = [1, 2, 3, 4]
+        XCTAssertEqual(stack, Stack(array))
+    }
+    
+    func testArrayLiteral() {
+        let stack: Stack = ["blueberry", "plain", "potato"]
+        
+        XCTAssertEqual(stack, ["blueberry", "plain", "potato"])
+    }
+    
+
+
+    func testAll() {
         
         let heros = ["배트맨", "수퍼맨", "원더우먼", "플래쉬", "아쿠아맨"]
         

@@ -6,9 +6,9 @@
 //
 
 import XCTest
-@testable import Test
-private typealias Graph = AdjacencyList<String>
-private typealias Vertex = Graph.Vertex
+@testable import DataStructures
+typealias Graph = AdjacencyList<String>
+typealias Vertex = Graph.Vertex
 
 private extension String {
     init?(shortestPath: [Graph.Edge]) {
@@ -22,12 +22,11 @@ private extension String {
         }
     }
 }
-
-
-class TestDijksta: XCTestCase {
+final class TestDijksta: XCTestCase {
 
     
-    private let (graph , a,b,c,d,e,f, g,h ) : (Graph, Vertex, Vertex, Vertex, Vertex, Vertex, Vertex, Vertex, Vertex) = {
+    private let (graph , a,b,c,d,e,f, g,h ) : (Graph, Vertex, Vertex, Vertex, Vertex, Vertex, Vertex, Vertex, Vertex)
+    = {
         var graph = AdjacencyList<String>()
         let a = graph.addVertex("A")
         let b = graph.addVertex("B")
@@ -60,7 +59,7 @@ class TestDijksta: XCTestCase {
             graph.add(edge)
         }
         return (graph , a,b,c,d,e,f, g,h )
-    }
+    }()
     
     func testShortestPath() {
         let shortestPath = Dijkstra.getShortestPath(from: a, to: d, graph: graph)
@@ -71,9 +70,32 @@ class TestDijksta: XCTestCase {
     
     func testPrim() {
         let (cost, minmumSpanningTree) = Prim.getMinimumSpanningTree(for: graph)
-        XCTAssertEqual(cost, 15)
-        XCTAssertEqual(minmumSpanningTree,
+        XCTAssertEqual(cost, 13)
+
         
+        XCTAssertEqual("\(minmumSpanningTree)","""
+0: A -> G (1.0)
+
+1: B -> E (1.0)
+        F (3.0)
+
+2: C -> E (1.0)
+        G (3.0)
+
+3: D -> E (2.0)
+
+4: E -> B (1.0)
+        C (1.0)
+        D (2.0)
+
+5: F -> B (3.0)
+        H (2.0)
+
+6: G -> A (1.0)
+        C (3.0)
+
+7: H -> F (2.0)
+"""
         )
     }
     func testShortestPaths() {

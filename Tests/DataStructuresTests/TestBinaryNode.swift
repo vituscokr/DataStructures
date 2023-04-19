@@ -5,42 +5,23 @@
 //  Created by vitus on 2022/05/12.
 //
 
+
 import XCTest
+@testable import DataStructures
 
-func serialize<T>(_ node: BinaryNode<T>) -> [T?] {
-    var array : [T?] = []
-    node.traversePreOrder { array.append($0) }
-    return array
-}
 
-func deserialize<T>(_ array: inout [T?]) -> BinaryNode<T>?  {
-    guard let value = array.removeLast()  else {
-        return nil
-    }
-    
-    let node = BinaryNode(value: value)
-    
-    node.leftChild = deserialize(&array )
-    
-    node.rightChild = deserialize(&array )
-    return node
-}
-func deserialize<T>(_ array: [T?]) -> BinaryNode<T>?  {
-    var reserved = Array(array.reversed())
-    return deserialize(&reserved)
-}
 
 
 class TestBinaryNode: XCTestCase {
     
     var tree : BinaryNode<Int> = {
-        let zero = BinaryNode(value: 0)
-        let one = BinaryNode(value: 1)
+        let zero = BinaryNode(value: 0) //
+        let one = BinaryNode(value: 1) //
         let two = BinaryNode(value : 2)
-        let five = BinaryNode(value : 5)
+        let five = BinaryNode(value : 5) //
         let seven = BinaryNode(value: 7)
-        let eight = BinaryNode(value: 8)
-        let nine = BinaryNode(value: 9)
+        let eight = BinaryNode(value: 8) //
+        let nine = BinaryNode(value: 9) //
         
         seven.leftChild = one
         one.leftChild =  zero
@@ -64,6 +45,13 @@ class TestBinaryNode: XCTestCase {
     
     func testVisualizeBinaryNode() throws {
         print(tree.description)
+       //  ┌──nil
+       // ┌──9
+       // │ └──8
+       // 7
+       // │ ┌──5
+       // └──1
+       //  └──0
     }
     
     func testTraverseInOrder() throws {
